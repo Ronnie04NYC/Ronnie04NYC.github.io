@@ -1,14 +1,49 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
+const regions = [
+ {id:'frontal', n:'01', region:'Frontal lobe', title:'The Truth Index', label:'Judgment & inquiry', description:'A starting point for finding sources worth your attention.', anatomy:'Supports planning, reasoning, and decision-making.', url:'https://truthindex.xyz/', color:'#99e8cb', d:'M325 100 C262 70 183 89 138 128 C86 133 52 190 57 237 C28 263 55 318 94 333 C139 354 187 335 230 310 L302 279 L316 235 L301 203 L330 166 Z', x:180,y:219},
+ {id:'parietal', n:'02', region:'Parietal lobe', title:'The Great Wealth Transfer', label:'Patterns & perspective', description:'Explore the movement of wealth and the systems around it.', anatomy:'Integrates sensory information and supports spatial processing.', url:'https://wealth-transfer.vercel.app/',color:'#b4b7f2',d:'M325 100 C401 70 481 102 522 154 L496 204 L469 239 L433 276 L302 279 L316 235 L301 203 L330 166 Z',x:404,y:189},
+ {id:'temporal', n:'03', region:'Temporal lobe', title:'Propaganda Exposure Index', label:'Language & interpretation', description:'Examine the messages competing to shape your perspective.', anatomy:'Contributes to hearing, memory, and language comprehension.',url:'https://propaganda-index.vercel.app/',color:'#f2bc89',d:'M94 333 C139 354 187 335 230 310 L302 279 L433 276 L469 239 L470 322 C445 359 404 378 351 391 C273 431 183 402 142 372 Z',x:290,y:349},
+ {id:'occipital',n:'04',region:'Occipital lobe',title:'ImagineArt',label:'Vision & imagination',description:'Step into my visual experiments and AI artwork.',anatomy:'Primarily processes visual information.',url:'https://imagine.art/c/drmoonhatt4n',color:'#87c9ef',d:'M522 154 C562 182 589 236 571 282 C561 311 516 337 470 322 L469 239 L496 204 Z',x:529,y:257},
+];
 ---
 <Base>
-  <p class="eyebrow">A space for curiosity</p>
-  <h1>Ideas connect.<br /><em>Perspectives change.</em></h1>
-  <p class="intro">I'm Ronnie. {site.description}</p>
-  <section aria-labelledby="explore">
-    <h2 id="explore">Taking shape</h2>
-    <p>A new home for my writing, creative work, and experiments.</p>
-    <ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul>
+  <div class="intro-row"><div><p class="eyebrow"><span class="status-dot"></span> The Moonhatt4n laboratory</p><h1>A mind.<br/><em>Many rabbit holes.</em></h1></div><p class="intro">Art, evidence, and systems.<br/>Explore the connections.</p></div>
+  <section class="lab" aria-label="Interactive project brain map">
+    <div class="lab-bar"><span>NEURAL ATLAS / 001</span><span>LEFT HEMISPHERE · LATERAL VIEW</span></div>
+    <div class="lab-body">
+      <div class="specimen">
+        <span class="orientation front">ANTERIOR ←</span><span class="orientation rear">→ POSTERIOR</span>
+        <svg class="brain" viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" aria-label="Stylized left brain hemisphere. Four lobes link to four projects.">
+          <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="currentColor" stroke-width=".5" opacity=".18"/></pattern></defs>
+          <path class="crosshair" d="M320 32V460 M20 250H620"/>
+          <ellipse cx="320" cy="253" rx="293" ry="212" fill="url(#grid)" stroke="#25434b" stroke-dasharray="3 9"/>
+          <g class="support-anatomy"><path d="M385 385 C405 381 419 400 428 414 L448 453 L424 467 L386 421 L367 404Z"/><path d="M470 338 C517 316 559 340 563 374 C572 410 529 439 482 427 C451 421 426 398 424 379Z"/><path d="M453 364Q503 343 547 365 M448 377Q504 357 553 379 M453 390Q508 372 547 394 M469 404Q509 392 533 409"/><text x="498" y="456">CEREBELLUM</text><text x="354" y="486">BRAINSTEM</text></g>
+          {regions.map(r=><a href={r.url} class="brain-region" data-region={r.id} style={`--region:${r.color}`} aria-label={`${r.title} — ${r.region}`}><title>{r.title} · {r.region}</title><path d={r.d}/><text x={r.x} y={r.y}>{r.n}</text></a>)}
+          <g class="folds"><path d="M113 175Q141 135 199 148Q219 116 273 130 M86 222Q111 188 151 211Q167 170 202 187 M91 274Q136 293 157 256Q185 231 217 252 M181 314Q169 283 206 280Q245 289 269 245 M252 153Q226 192 260 216 M355 127Q391 108 415 137Q456 121 482 157 M346 199Q363 159 402 170Q419 200 453 178 M350 246Q382 208 422 235 M188 348Q219 371 249 342Q279 312 309 335 M251 382Q280 364 323 367Q374 345 414 314 M485 284Q523 303 545 267 M501 217Q536 214 550 245"/></g>
+        </svg>
+        <p class="specimen-note">Hover to investigate. Select to explore.</p>
+      </div>
+      <aside class="readout" aria-label="Selected project">
+        {regions.map((r,i)=><div class:list={['project-detail',{active:i===0}]} data-detail={r.id}><p class="eyebrow">REGION {r.n} / {r.region}</p><p class="signal" style={`color:${r.color}`}>{r.label}</p><h2>{r.title}</h2><p>{r.description}</p><a class="open-project" href={r.url}>Explore project <span aria-hidden="true">↗</span></a><div class="anatomy"><span>ANATOMY NOTE</span><p>{r.anatomy}</p></div></div>)}
+      </aside>
+    </div>
+    <nav class="project-list" aria-label="All brain map projects">{regions.map(r=><a href={r.url} data-region={r.id} style={`--region:${r.color}`}><span class="number">{r.n}</span><span>{r.title}<small>{r.region}</small></span><span aria-hidden="true">↗</span></a>)}</nav>
   </section>
+  <div class="below"><p>A map of interests, not a map of isolated mental functions. These associations are thematic; real thinking crosses regions. Anatomy is simplified.</p><a href="https://linktr.ee/Dr.Moonhatt4n">More from my world ↗</a></div>
+  <script>
+    const targets = document.querySelectorAll<HTMLElement | SVGElement>('[data-region]');
+    function select(id: string | undefined) {
+      document.querySelectorAll('[data-detail]').forEach(el=>el.classList.toggle('active',el.getAttribute('data-detail')===id));
+      targets.forEach(el=>el.classList.toggle('selected',el.dataset.region===id));
+    }
+    targets.forEach(el=>{
+      el.addEventListener('pointerenter',event=>{if((event as PointerEvent).pointerType!=='touch') select(el.dataset.region);});
+      el.addEventListener('focus',()=>select(el.dataset.region));
+      el.addEventListener('click',event=>{
+        if(el.classList.contains('brain-region') && (event as PointerEvent).pointerType==='touch') {event.preventDefault();select(el.dataset.region);}
+      });
+    });
+    select('frontal');
+  </script>
 </Base>
