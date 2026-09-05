@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base>
+  <p class="eyebrow">A space for curiosity</p>
+  <h1>Ideas connect.<br /><em>Perspectives change.</em></h1>
+  <p class="intro">I'm Ronnie. {site.description}</p>
+  <section aria-labelledby="explore">
+    <h2 id="explore">Taking shape</h2>
+    <p>A new home for my writing, creative work, and experiments.</p>
+    <ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul>
+  </section>
+</Base>
