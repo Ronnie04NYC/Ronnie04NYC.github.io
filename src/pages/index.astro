@@ -1,47 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 const regions = [
- {id:'frontal', n:'01', region:'Frontal lobe', title:'The Truth Index', label:'Judgment & inquiry', description:'A starting point for finding sources worth your attention.', anatomy:'Supports planning, reasoning, and decision-making.', url:'https://truthindex.xyz/', color:'#99e8cb', d:'M325 100 C262 70 183 89 138 128 C86 133 52 190 57 237 C28 263 55 318 94 333 C139 354 187 335 230 310 L302 279 L316 235 L301 203 L330 166 Z', x:180,y:219},
- {id:'parietal', n:'02', region:'Parietal lobe', title:'The Great Wealth Transfer', label:'Patterns & perspective', description:'Explore the movement of wealth and the systems around it.', anatomy:'Integrates sensory information and supports spatial processing.', url:'https://wealth-transfer.vercel.app/',color:'#b4b7f2',d:'M325 100 C401 70 481 102 522 154 L496 204 L469 239 L433 276 L302 279 L316 235 L301 203 L330 166 Z',x:404,y:189},
- {id:'temporal', n:'03', region:'Temporal lobe', title:'Propaganda Exposure Index', label:'Language & interpretation', description:'Examine the messages competing to shape your perspective.', anatomy:'Contributes to hearing, memory, and language comprehension.',url:'https://propaganda-index.vercel.app/',color:'#f2bc89',d:'M94 333 C139 354 187 335 230 310 L302 279 L433 276 L469 239 L470 322 C445 359 404 378 351 391 C273 431 183 402 142 372 Z',x:290,y:349},
- {id:'occipital',n:'04',region:'Occipital lobe',title:'The WACC',label:'A shared vision',description:'From scattered pressure to coordinated action. Explore the WACC.',anatomy:'Primarily processes visual information.',url:'https://x.com/_DrMoonhatt4n_/status/2031886765301133312',color:'#87c9ef',d:'M522 154 C562 182 589 236 571 282 C561 311 516 337 470 322 L469 239 L496 204 Z',x:529,y:257},
+ {id:'frontal', n:'01', region:'Frontal lobe', title:'The Truth Index', label:'Judgment & inquiry', description:'A starting point for finding sources worth your attention.', anatomy:'Supports planning, reasoning, and decision-making.', url:'https://truthindex.xyz/', color:'#99e8cb', d:'M480 182 C377 184 308 239 263 312 C234 365 220 431 256 465 C283 486 318 492 356 482 L393 429 L481 371 L514 329 L503 265 Z', x:365,y:327},
+ {id:'parietal', n:'02', region:'Parietal lobe', title:'The Great Wealth Transfer', label:'Patterns & perspective', description:'Explore the movement of wealth and the systems around it.', anatomy:'Integrates sensory information and supports spatial processing.', url:'https://wealth-transfer.vercel.app/',color:'#b4b7f2',d:'M480 182 C541 164 614 179 666 211 L700 283 L641 339 L566 357 L481 371 L514 329 L503 265 Z',x:573,y:259},
+ {id:'temporal', n:'03', region:'Temporal lobe', title:'Propaganda Exposure Index', label:'Language & interpretation', description:'Examine the messages competing to shape your perspective.', anatomy:'Contributes to hearing, memory, and language comprehension.',url:'https://propaganda-index.vercel.app/',color:'#f2bc89',d:'M356 482 L393 429 L481 371 L566 357 L641 339 L701 355 L686 413 C622 451 557 479 512 518 C459 558 408 550 394 507 Z',x:511,y:445},
+ {id:'occipital',n:'04',region:'Occipital lobe',title:'The WACC',label:'A shared vision',description:'From scattered pressure to coordinated action. Explore the WACC.',anatomy:'Primarily processes visual information.',url:'https://x.com/_DrMoonhatt4n_/status/2031886765301133312',color:'#87c9ef',d:'M666 211 C724 241 758 318 771 384 C784 421 745 449 686 438 L686 413 L701 355 L641 339 L700 283 Z',x:718,y:361},
 ];
 ---
 <Base>
   <div class="intro-row"><div><p class="eyebrow"><span class="status-dot"></span> The Moonhatt4n laboratory</p><h1>A mind.<br/><em>Many rabbit holes.</em></h1></div><p class="intro">Art, evidence, and systems.<br/>Explore the connections.</p></div>
   <section class="lab" aria-label="Interactive project brain map">
-    <div class="lab-bar"><span>NEURAL ATLAS / 001</span><span>LEFT HEMISPHERE · LATERAL VIEW</span></div>
+    <div class="lab-bar"><span>SPECIMEN / 001</span><span>LEFT HEMISPHERE · LATERAL VIEW</span></div>
     <div class="lab-body">
       <div class="specimen">
         <span class="orientation front">ANTERIOR ←</span><span class="orientation rear">→ POSTERIOR</span>
-        <svg class="brain" viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" aria-label="Stylized left brain hemisphere. Four lobes link to four projects.">
-          <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="currentColor" stroke-width=".5" opacity=".18"/></pattern>
-            <radialGradient id="aura"><stop stop-color="#6077ed" stop-opacity=".38"/><stop offset=".65" stop-color="#24d8d0" stop-opacity=".09"/><stop offset="1" stop-color="#071322" stop-opacity="0"/></radialGradient>
-            <linearGradient id="glass" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#ffffff" stop-opacity=".45"/><stop offset=".42" stop-color="#8ba5ff" stop-opacity=".08"/><stop offset="1" stop-color="#03091a" stop-opacity=".7"/></linearGradient>
-            {regions.map(r=><clipPath id={`clip-${r.id}`}><path d={r.d}/></clipPath>)}
-          </defs>
-          <g class="orbital-field" aria-hidden="true">
-            <ellipse cx="320" cy="250" rx="320" ry="250" fill="url(#aura)"/>
-            <ellipse class="orbit orbit-one" cx="320" cy="263" rx="304" ry="191" transform="rotate(-17 320 263)"/>
-            <ellipse class="orbit orbit-two" cx="320" cy="263" rx="286" ry="219" transform="rotate(23 320 263)"/>
-            <path class="frame-ticks" d="M30 119V82H69 M560 82H603V119 M30 390V429H69 M568 429H603V390"/>
-            <ellipse class="platform" cx="316" cy="444" rx="186" ry="22"/>
-            <ellipse class="platform" cx="316" cy="444" rx="135" ry="12"/>
-            <path class="projection" d="M130 443L87 307 M502 443L558 306 M218 445L181 396 M424 445L440 394"/>
-          </g>
-          <path class="crosshair" d="M320 32V460 M20 250H620"/>
-          <ellipse cx="320" cy="253" rx="293" ry="212" fill="url(#grid)" stroke="#25434b" stroke-dasharray="3 9"/>
-          <g class="support-anatomy"><path d="M385 385 C405 381 419 400 428 414 L448 453 L424 467 L386 421 L367 404Z"/><path d="M470 338 C517 316 559 340 563 374 C572 410 529 439 482 427 C451 421 426 398 424 379Z"/><path d="M453 364Q503 343 547 365 M448 377Q504 357 553 379 M453 390Q508 372 547 394 M469 404Q509 392 533 409"/><text x="498" y="456">CEREBELLUM</text><text x="354" y="486">BRAINSTEM</text></g>
-          {regions.map(r=><a href={r.url} class="brain-region" data-region={r.id} style={`--region:${r.color}`} aria-label={`${r.title} — ${r.region}`}><title>{r.title} · {r.region}</title><path class="lobe-shell" d={r.d}/>
-            <g clip-path={`url(#clip-${r.id})`} class="lobe-illustration" aria-hidden="true">
-              <path class="glass-layer" d={r.d}/>
-              {[0,1,2,3,4,5,6,7,8].map(i=><path class="contour" d={`M30 ${115+i*35} C130 ${50+i*36},185 ${190+i*19},282 ${122+i*28} S427 ${70+i*38},610 ${122+i*34}`}/>)}
-              <path class="circuit" d="M85 240H129L154 215H221L249 187H286L320 221H394L422 193H480L524 237H573 M100 306H157L186 335H247L279 303H368L397 332H439L469 302H560"/>
-              {[ [129,240],[221,215],[286,187],[394,221],[480,193],[157,306],[247,335],[368,303],[469,302] ].map(([x,y])=><g><circle class="node-halo" cx={x} cy={y} r="7"/><circle class="node" cx={x} cy={y} r="2.5"/></g>)}
-            </g>
-            <circle class="region-badge" cx={r.x} cy={r.y-5} r="19"/>
-            <text x={r.x} y={r.y}>{r.n}</text></a>)}
-          <g class="folds"><path d="M113 175Q141 135 199 148Q219 116 273 130 M86 222Q111 188 151 211Q167 170 202 187 M91 274Q136 293 157 256Q185 231 217 252 M181 314Q169 283 206 280Q245 289 269 245 M252 153Q226 192 260 216 M355 127Q391 108 415 137Q456 121 482 157 M346 199Q363 159 402 170Q419 200 453 178 M350 246Q382 208 422 235 M188 348Q219 371 249 342Q279 312 309 335 M251 382Q280 364 323 367Q374 345 414 314 M485 284Q523 303 545 267 M501 217Q536 214 550 245"/></g>
+        <svg class="brain sculpture" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-label="Cyberpunk brain sculpture with four interactive project regions.">
+          <image href="/brain-sculpture.png" width="1000" height="1000"/>
+          {regions.map(r=><a href={r.url} class="brain-region" data-region={r.id} style={`--region:${r.color}`} aria-label={`${r.title} — ${r.region}`}><title>{r.title} · {r.region}</title><path class="hotspot" d={r.d}/><circle class="region-badge" cx={r.x} cy={r.y} r="20"/><text x={r.x} y={r.y+5}>{r.n}</text></a>)}
         </svg>
         <p class="specimen-note">Hover to investigate. Select to explore.</p>
       </div>
@@ -51,7 +26,7 @@ const regions = [
     </div>
     <nav class="project-list" aria-label="All brain map projects">{regions.map(r=><a href={r.url} data-region={r.id} style={`--region:${r.color}`}><span class="number">{r.n}</span><span>{r.title}<small>{r.region}</small></span><span aria-hidden="true">↗</span></a>)}</nav>
   </section>
-  <div class="below"><p>A map of interests, not a map of isolated mental functions. These associations are thematic; real thinking crosses regions. Anatomy is simplified.</p><a href="https://linktr.ee/Dr.Moonhatt4n">More from my world ↗</a></div>
+  <div class="below"><p>An imagined specimen. Project associations are thematic; brain functions span networks. Region boundaries are approximate.</p><a href="https://linktr.ee/Dr.Moonhatt4n">More from my world ↗</a></div>
   <script>
     const targets = document.querySelectorAll<HTMLElement | SVGElement>('[data-region]');
     function select(id: string | undefined) {
