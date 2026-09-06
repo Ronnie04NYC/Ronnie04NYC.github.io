@@ -41,5 +41,41 @@ const regions = [
       });
     });
     select('frontal');
+
+    const specimen = document.querySelector<HTMLElement>('.specimen');
+    const sculpture = document.querySelector<SVGElement>('.sculpture');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    let start = 0;
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+    let hovering = false;
+    function animate(time: number) {
+      if (!sculpture || reducedMotion.matches) { frame = 0; return; }
+      if (!start) start = time;
+      currentX += (targetX - currentX) * 0.045;
+      currentY += (targetY - currentY) * 0.045;
+      const phase = (time - start) / 3200;
+      const drift = hovering ? Math.sin(phase) * 3 : 0;
+      sculpture.style.transform = `perspective(1100px) rotateX(${currentX}deg) rotateY(${currentY + drift}deg) rotateZ(${hovering ? Math.sin(phase * .7) * .7 : 0}deg)`;
+      if (hovering || Math.abs(currentX) + Math.abs(currentY) > .02) {
+        frame = requestAnimationFrame(animate);
+      } else { sculpture.style.transform = ''; frame = 0; start = 0; }
+    }
+    specimen?.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch' || reducedMotion.matches) return;
+      const bounds = specimen.getBoundingClientRect();
+      targetY = ((event.clientX - bounds.left) / bounds.width - .5) * 18;
+      targetX = -((event.clientY - bounds.top) / bounds.height - .5) * 10;
+      hovering = true;
+      if (!frame) frame = requestAnimationFrame(animate);
+    });
+    function settle() { hovering = false; targetX = 0; targetY = 0; }
+    specimen?.addEventListener('pointerleave', settle);
+    window.addEventListener('blur', settle);
+    reducedMotion.addEventListener('change', () => {
+      settle(); cancelAnimationFrame(frame); frame = 0; start = 0;
+      currentX = currentY = 0;
+      if (sculpture) sculpture.style.transform = '';
+    });
   </script>
 </Base>
