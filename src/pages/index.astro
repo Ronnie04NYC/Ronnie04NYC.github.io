@@ -1,10 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 const regions = [
- {id:'frontal', n:'01', region:'Frontal lobe', title:'The Truth Index', label:'Judgment & inquiry', description:'A starting point for finding sources worth your attention.', anatomy:'Supports planning, reasoning, and decision-making.', url:'https://truthindex.xyz/', color:'#99e8cb', d:'M480 182 C377 184 308 239 263 312 C234 365 220 431 256 465 C283 486 318 492 356 482 L393 429 L481 371 L514 329 L503 265 Z', x:365,y:327},
- {id:'parietal', n:'02', region:'Parietal lobe', title:'The Great Wealth Transfer', label:'Patterns & perspective', description:'Explore the movement of wealth and the systems around it.', anatomy:'Integrates sensory information and supports spatial processing.', url:'https://wealth-transfer.vercel.app/',color:'#b4b7f2',d:'M480 182 C541 164 614 179 666 211 L700 283 L641 339 L566 357 L481 371 L514 329 L503 265 Z',x:573,y:259},
- {id:'temporal', n:'03', region:'Temporal lobe', title:'Propaganda Exposure Index', label:'Language & interpretation', description:'Examine the messages competing to shape your perspective.', anatomy:'Contributes to hearing, memory, and language comprehension.',url:'https://propaganda-index.vercel.app/',color:'#f2bc89',d:'M356 482 L393 429 L481 371 L566 357 L641 339 L701 355 L686 413 C622 451 557 479 512 518 C459 558 408 550 394 507 Z',x:511,y:445},
- {id:'occipital',n:'04',region:'Occipital lobe',title:'The WACC',label:'A shared vision',description:'From scattered pressure to coordinated action. Explore the WACC.',anatomy:'Primarily processes visual information.',url:'https://x.com/_DrMoonhatt4n_/status/2031886765301133312',color:'#87c9ef',d:'M666 211 C724 241 758 318 771 384 C784 421 745 449 686 438 L686 413 L701 355 L641 339 L700 283 Z',x:718,y:361},
+ {id:'frontal', n:'01', region:'Frontal lobe', title:'The Truth Index', label:'Judgment & inquiry', description:'A starting point for finding sources worth your attention.', anatomy:'Supports planning, reasoning, and decision-making.', url:'https://truthindex.xyz/', color:'#35e5ff', d:'M480 182 C377 184 308 239 263 312 C234 365 220 431 256 465 C283 486 318 492 356 482 L393 429 L481 371 L514 329 L503 265 Z', x:365,y:327},
+ {id:'parietal', n:'02', region:'Parietal lobe', title:'The Great Wealth Transfer', label:'Patterns & perspective', description:'Explore the movement of wealth and the systems around it.', anatomy:'Integrates sensory information and supports spatial processing.', url:'https://wealth-transfer.vercel.app/',color:'#ae78ff',d:'M480 182 C541 164 614 179 666 211 L700 283 L641 339 L566 357 L481 371 L514 329 L503 265 Z',x:573,y:259},
+ {id:'temporal', n:'03', region:'Temporal lobe', title:'Propaganda Exposure Index', label:'Language & interpretation', description:'Examine the messages competing to shape your perspective.', anatomy:'Contributes to hearing, memory, and language comprehension.',url:'https://propaganda-index.vercel.app/',color:'#ffba48',d:'M356 482 L393 429 L481 371 L566 357 L641 339 L701 355 L686 413 C622 451 557 479 512 518 C459 558 408 550 394 507 Z',x:511,y:445},
+ {id:'occipital',n:'04',region:'Occipital lobe',title:'The WACC',label:'A shared vision',description:'From scattered pressure to coordinated action. Explore the WACC.',anatomy:'Primarily processes visual information.',url:'https://x.com/_DrMoonhatt4n_/status/2031886765301133312',color:'#ff6b78',d:'M666 211 C724 241 758 318 771 384 C784 421 745 449 686 438 L686 413 L701 355 L641 339 L700 283 Z',x:718,y:361},
 ];
 ---
 <Base>
@@ -16,7 +16,7 @@ const regions = [
         <div class="brain-stage" tabindex="0" role="group" aria-label="Interactive 3D brain. Drag to rotate; use arrow keys when focused. Select a brain region to inspect its project.">
           <img class="brain-fallback" src="/brain-sculpture.png" alt="Brain sculpture above a fixed pedestal" width="1254" height="1254"/>
         </div>
-        <div class="brain-controls"><button id="reset-brain" type="button">Reset view</button><button id="spin-brain" type="button" aria-pressed="true">Hover spin: on</button></div>
+        <div class="brain-controls"><button id="reset-brain" type="button">Reset view</button><button id="spin-brain" type="button" aria-pressed="true">Auto-rotate: on</button></div>
         <p class="model-status" role="status">Loading 3D brain…</p>
       </div>
       <aside class="readout" aria-label="Selected project">
@@ -71,11 +71,11 @@ const regions = [
       const envTexture = pmrem.fromScene(environment).texture;
       scene.environment = envTexture; scene.environmentIntensity=.22; environment.dispose(); pmrem.dispose();
       scene.add(new THREE.HemisphereLight(0xbce9ef,0x18212d,.4));
-      const key = new THREE.DirectionalLight(0xffe5ce,2.4); key.position.set(-3,5,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-3;key.shadow.camera.right=3;key.shadow.camera.top=3;key.shadow.camera.bottom=-3;key.shadow.normalBias=.025; scene.add(key);
-      const cyan = new THREE.DirectionalLight(0x52e8fa,1.7); cyan.position.set(-4,1,-2);scene.add(cyan);
-      const coral = new THREE.DirectionalLight(0xf68b64,1.8);coral.position.set(3,1,0);scene.add(coral);
+      const key = new THREE.DirectionalLight(0xcfefff,1.8); key.position.set(-3,5,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-3;key.shadow.camera.right=3;key.shadow.camera.top=3;key.shadow.camera.bottom=-3;key.shadow.normalBias=.025; scene.add(key);
+      const cyan = new THREE.DirectionalLight(0x32dfff,3); cyan.position.set(-4,1,-2);scene.add(cyan);
+      const coral = new THREE.DirectionalLight(0xff7845,3);coral.position.set(3,1,0);scene.add(coral);
       // Stationary pedestal and support belong directly to the scene, never to the rotating brain.
-      const pedestal = new THREE.Mesh(new THREE.BoxGeometry(3.5,.28,2.8),new THREE.MeshStandardMaterial({color:0xd3c6b0,metalness:.06,roughness:.72}));
+      const pedestal = new THREE.Mesh(new THREE.BoxGeometry(3.5,.28,2.8),new THREE.MeshStandardMaterial({color:0x111a23,metalness:.7,roughness:.38}));
       pedestal.receiveShadow=true;pedestal.position.y=-1.6;scene.add(pedestal);
       const trim = new THREE.LineSegments(new THREE.EdgesGeometry(pedestal.geometry),new THREE.LineBasicMaterial({color:0x70cbd8,transparent:true,opacity:.18}));
       trim.position.copy(pedestal.position);scene.add(trim);
@@ -86,7 +86,7 @@ const regions = [
       const loader = new GLTFLoader();loader.setDRACOLoader(draco);
       const gltf = await loader.loadAsync('/brain.glb');draco.dispose();
       const meshes: THREE.Mesh[] = [];
-      const colors: Record<string,string> = {frontal:'#99e8cb',parietal:'#b4b7f2',temporal:'#f2bc89',occipital:'#87c9ef'};
+      const colors: Record<string,string> = {frontal:'#35e5ff',parietal:'#ae78ff',temporal:'#ffba48',occipital:'#ff6b78'};
       gltf.scene.traverse(object=>{
         if (!(object instanceof THREE.Mesh)) return;
         let anatomicalNode: THREE.Object3D | null = object;
@@ -95,7 +95,7 @@ const regions = [
         const cat = metadata.bx_cat;
         if (!['cortex','cerebellum','brainstem'].includes(cat)) {object.visible=false;return;}
         object.userData.projectRegion = String(metadata.bx_region || '').split(' ')[0].toLowerCase();
-        object.material = new THREE.MeshPhysicalMaterial({color:cat==='cortex'?0xd4a58d:0x6c3b36,metalness:cat==='cortex'?.18:.45,roughness:.4,clearcoat:.3,clearcoatRoughness:.3});
+        object.material = new THREE.MeshPhysicalMaterial({color:cat==='cortex'?0xb9c9ca:0x14232b,metalness:cat==='cortex'?.35:.9,roughness:.23,clearcoat:.65,clearcoatRoughness:.3});
         object.castShadow=true;object.receiveShadow=true;
         meshes.push(object);
       });
@@ -146,12 +146,12 @@ const regions = [
       gltf.scene.position.sub(center);
       const normalizer=new THREE.Group();normalizer.add(gltf.scene);normalizer.scale.setScalar(2.8/Math.max(size.x,size.y,size.z));brain.add(normalizer);
       stage.append(renderer.domElement);stage.classList.add('ready');
-      status.textContent='Hover to spin · Drag to rotate · Select a region';
+      status.textContent='Drag to rotate · Hover to illuminate a region';
       const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();
       let hover=false, dragging=false, moved=false, enabled=!reducedMotion.matches;
       let lastX=0,lastY=0, startX=0,startY=0, lastTime=0, visible=true;
       const initialRotation=-Math.PI/2;
-      function syncButton(){spinButton.setAttribute('aria-pressed',String(enabled));spinButton.textContent=enabled?'Hover spin: on':'Hover spin: off';}
+      function syncButton(){spinButton.setAttribute('aria-pressed',String(enabled));spinButton.textContent=enabled?'Auto-rotate: on':'Auto-rotate: off';}
       syncButton();
       function highlight(region:string|undefined){
         meshes.forEach(mesh=>{mesh.userData.circuitTarget=mesh.userData.projectRegion===region && colors[region || '']?1:0;});
@@ -174,7 +174,7 @@ const regions = [
       targets.forEach(el=>{el.addEventListener('focus',()=>highlight(el.dataset.region));el.addEventListener('pointerenter',()=>highlight(el.dataset.region));el.addEventListener('pointerleave',()=>highlight(undefined));el.addEventListener('blur',()=>highlight(undefined));});
       const resize = new ResizeObserver(()=>{const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();});resize.observe(stage);
       const observer = new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;});observer.observe(stage);
-      renderer.setAnimationLoop(time=>{const dt=Math.min((time-lastTime)/1000,.05);lastTime=time;if(!visible||document.hidden)return;if(hover&&!dragging&&enabled&&!reducedMotion.matches)brain.rotation.y+=dt*.17;if(hover&&!dragging){brain.updateMatrixWorld(true);const region=pickCurrent();highlight(region);if(colors[region || ''])select(region);}
+      renderer.setAnimationLoop(time=>{const dt=Math.min((time-lastTime)/1000,.05);lastTime=time;if(!visible||document.hidden)return;if(!dragging&&enabled&&!reducedMotion.matches)brain.rotation.y+=dt*.09;if(hover&&!dragging){brain.updateMatrixWorld(true);const region=pickCurrent();highlight(region);if(colors[region || ''])select(region);}
         meshes.forEach(mesh=>{mesh.userData.circuitActivation.value=THREE.MathUtils.damp(mesh.userData.circuitActivation.value,mesh.userData.circuitTarget,9,dt);});renderer.render(scene,camera);});
       renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();renderer.setAnimationLoop(null);stage.classList.remove('ready');renderer.domElement.hidden=true;status.textContent='3D view unavailable. Project links remain available below.';});
       window.addEventListener('pagehide',()=>{renderer.setAnimationLoop(null);resize.disconnect();observer.disconnect();renderer.dispose();envTexture.dispose();});
